@@ -10,17 +10,17 @@
 @media (min-width: 1200px) { ... }
 */
 
-// @font-face {
-//   font-family: 'RomanSerif';
-//   src: local('RomanSerif'), local('RomanSerif'), url('../font/RomanSerif.woff') format('woff');
-//   font-display: swap;
-// }
+@font-face {
+  font-family: 'Cooper Hewitt Light';
+  src: local('Cooper Hewitt Light'), local('Cooper Hewitt Light'), url('../font/cooper-hewitt/light.woff') format('woff');
+  font-display: swap;
+}
 
-// @font-face {
-//   font-family: 'Hussar';
-//   src: local('Hussar'), local('Hussar'), url('../font/hussar-bold.woff') format('woff');
-//   font-display: swap;
-// }
+@font-face {
+  font-family: 'Cooper Hewitt Bold';
+  src: local('Hussar'), local('Hussar'), url('../font/cooper-hewitt/bold.woff') format('woff');
+  font-display: swap;
+}
 
 @import "components/normalize";
 @import "components/variables";
