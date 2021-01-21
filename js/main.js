@@ -31,8 +31,8 @@ AOS.init();
 
 // BEGIN validación de número telefónico
 let phone = document.querySelectorAll(".phone");
-// let form = document.forms['creditpoints'];
-let scriptURL = '';
+// let form = document.forms['soleadoyrenovable'];
+let scriptURL = 'https://script.google.com/macros/s/AKfycbw0inElZL4ExfOugg5beHkVg_vLIru0p1wR7xEUsQXsCGnwjy4W/exec';
 
 function strictValidation(input) {
   input.addEventListener('input', function() {
@@ -69,26 +69,25 @@ function dataToSheet(form, url){
     return false
   });
 }
-
-// phone.forEach(el=> {
-//   let iti = window.intlTelInput(el, {
-//     preferredCountries: ['pr'],
-//     utilsScript: './node_modules/intl-tel-input/build/js/utils.js',
-//     initialCountry: "auto",
-//     geoIpLookup: function(success, failure) {
-//       $.get("https://ipinfo.io/json", function() {}, "jsonp").always(function(resp) {
-//         console.log(resp)
-//         let countryCode = (resp && resp.country) ? resp.country : "pr";
-//         success(countryCode);
-//       });
-//     },
-//     customPlaceholder: function(selectedCountryPlaceholder, selectedCountryData) {
-//       selectedCountryPlaceholder = "+" + selectedCountryData.dialCode + "" +  selectedCountryPlaceholder.replace('/ |-|(|)/g', '');
-//       return selectedCountryPlaceholder;
-//     },    
-//   });
-//   strictValidation(el);
-// });
+phone.forEach(el=> {
+  let iti = window.intlTelInput(el, {
+    preferredCountries: ['pr'],
+    utilsScript: './node_modules/intl-tel-input/build/js/utils.js',
+    initialCountry: "auto",
+    geoIpLookup: function(success, failure) {
+      $.get("https://ipinfo.io/json", function() {}, "jsonp").always(function(resp) {
+        console.log(resp)
+        let countryCode = (resp && resp.country) ? resp.country : "pr";
+        success(countryCode);
+      });
+    },
+    customPlaceholder: function(selectedCountryPlaceholder, selectedCountryData) {
+      selectedCountryPlaceholder = "+" + selectedCountryData.dialCode + "" +  selectedCountryPlaceholder.replace('/ |-|(|)/g', '');
+      return selectedCountryPlaceholder;
+    },    
+  });
+  strictValidation(el);
+});
 // END validación de número telefónico
 // BEGIN EMAIL
 function formToJson(a) {
@@ -102,16 +101,16 @@ function formToJson(a) {
 function sendEmail(a, email) {
   let e = formToJson(a);
   Email.send({
-    SecureToken: "30e0150e-e943-4f06-ae37-b5e9d4591eef",
+    SecureToken: "b45ba6c9-4a62-4573-a1a5-673bcee1bae4",
     To: email,
-    From: "EmailQueRealizaElEnvío@gmail.com",
-    Subject: "Título de Email - Nuevo lead de landing page",
+    From: "leads@soleadoyrenovable.com",
+    Subject: "Soleado y Renovable - Nuevo lead de landing page",
     Body: `
     <h1>Datos del usuario</h1>
     <p>Nombre: ${e.name}. <br>
     Email: ${e.mail}. <br>
     Teléfono: ${e.phone}. <br>
-    Fue añadido en <a href="https://docs.google.com/spreadsheets/d/1iG4-BfPF04RwlqRhX6MwFjYqFbpN8o8bqDQZVyeljng/edit?usp=sharing">Google Sheet</a>. <br>
+    Fue añadido en <a href="https://docs.google.com/spreadsheets/d/1qyGhw3kfMhUbkeyjbbn8XTFzAMfeOcCVYOvJfhAYWdI/edit?usp=sharing">Google Sheet</a>. <br>
     </p>
     `
   }).then(
@@ -139,59 +138,30 @@ function message(form) {
 }
 
 // BEGIN Bootstrap Validación
-// let forms = document.getElementsByClassName('needs-validation');
+let forms = document.getElementsByClassName('needs-validation');
 // Loop over them and prevent submission
-// let validation = Array.prototype.filter.call(forms, function(form) {
-//   form.addEventListener('submit', function(e) {
-//     let f = formToJson(form);
-//     if (form.checkValidity() === false) {
-//       e.preventDefault();
-//       e.stopPropagation();
-//       clearPhone(phone);
-//     } else {
-//       e.preventDefault();
-//       clearPhone(phone);
-//       let sheet = dataToSheet(form, scriptURL);
-//       sendEmail(form, 'EnviaréEmailAEste@gmail.com');
-//       message(form)
-//     }
-//     form.classList.add('was-validated');
-//   }, false);
-// });
+let validation = Array.prototype.filter.call(forms, function(form) {
+  form.addEventListener('submit', function(e) {
+    let f = formToJson(form);
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+      clearPhone(phone);
+    } else {
+      e.preventDefault();
+      clearPhone(phone);
+      let sheet = dataToSheet(form, scriptURL);
+      sendEmail(form, 'EnviaréEmailAEste@gmail.com');
+      message(form)
+    }
+    form.classList.add('was-validated');
+  }, false);
+});
 // END Bootstrap Validación
 
-// BEGIN Flickity
-// let elem = document.querySelectorAll('.main-carousel');
-// let flkty = elem.forEach(el => {
-//   new Flickity( el, {
-//     // options
-//     prevNextButtons: true,
-//     pageDots: false,
-//     contain: true,
-//     fullscreen: true,
-//   });
-// });
-// END Flickity
-
 // BEGIN date
-// document.getElementById('date').innerHTML = new Date().getFullYear();
+document.getElementById('date').innerHTML = new Date().getFullYear();
 // END date
-
-// BEGIN Video Modal
-// $('#myModal').on('hidden.bs.modal', function (e) {
-//   $(".embed-responsive").html('');
-// })
-// $('#myModal').on('shown.bs.modal', function (e) {
-//   let video = $('.modalImg').data('video');
-//   $(".embed-responsive").html(`
-//   <iframe class="embed-responsive-item" 
-//   src="${video}" 
-//   frameborder="0" 
-//   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-//   allowfullscreen></iframe>
-//   `);
-// })
-// END Video Modal
 
 // BEGIN Loader
 const loader = document.getElementById('loader');
@@ -201,18 +171,3 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => $('#loader').addClass('d-none').removeClass('d-flex'), 3000);
 });
 // END Loader
-
-// BEGIN Background Parallax
-// let parallaxes = document.querySelectorAll(".parallax");
-
-// parallaxes.forEach((parallax) => {
-//   window.addEventListener("scroll", function() {
-//       let scrolledHeight= window.pageYOffset, limit= parallax.offsetTop+ parallax.offsetHeight;
-//       if(scrolledHeight > parallax.offsetTop && scrolledHeight <= limit) {
-//       parallax.style.backgroundPositionY=  (scrolledHeight - parallax.offsetTop) /1.5+ "px";
-//     } else {
-//       parallax.style.backgroundPositionY=  "0";
-//     }
-//   });
-// })
-// END Background Parallax

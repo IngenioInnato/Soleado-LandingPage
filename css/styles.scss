@@ -18,7 +18,7 @@
 
 @font-face {
   font-family: 'Cooper Hewitt Bold';
-  src: local('Hussar'), local('Hussar'), url('../font/cooper-hewitt/bold.woff') format('woff');
+  src: local('Cooper Hewitt Bold'), local('Cooper Hewitt Bold'), url('../font/cooper-hewitt/bold.woff') format('woff');
   font-display: swap;
 }
 
@@ -70,14 +70,23 @@ a:focus, button:focus, div:focus, input:focus, form:focus {
 // END intl-tel-input
 // BEGIN TEXT SHADOW
 .text-shadow {
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  text-shadow: 0 2px 2px rgba(0,0,0,0.2);
 }
 // END TEXT SHADOW
 // BEGIN Cambiar color de navbar
-.navbar-light .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(280, 90, 41)' stroke-linecap='round'  stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); 
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(255, 255, 255)' stroke-linecap='round'  stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important; 
 }
 // END Cambiar color de navbar
+.bold {
+  font-family: 'Cooper Hewitt Bold';
+}
+.box-shadow{
+  box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+}
+.form-shadow {
+  box-shadow:  1rem 3rem rgba(29,29,29,0.5);
+}
 // BEGIN Whatsapp
 .float{
   position:fixed;
@@ -131,4 +140,50 @@ a:focus, button:focus, div:focus, input:focus, form:focus {
   z-index: 9999;
   -webkit-transition: all 1s ease;
   transition: all 1s ease;
+}
+#S1{
+  background: url('../img/banner-2.webp') no-repeat center / cover;
+  .no-webp{
+    background: url('../img/banner-2.jpg') no-repeat center / cover;
+  }
+  @media (max-width: 991.98px) {
+    background: radial-gradient(#006BCC, #097CD8);
+  }
+
+}
+// BEGIN Gallery
+.gallery {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-areas: "uno     uno     dos   dos   tres  tres"
+                       "cuatro  cuatro  cinco cinco tres  tres"
+                       "cuatro  cuatro  seis  seis seis  seis"; 
+  @media (max-width: 991.98px) {
+      grid-template-areas: "uno" "dos" "tres" "cuatro" "cinco" "seis";
+      grid-gap: 3rem;
+      text-align: center;
+  }
+  .gallery__item--1 {
+    grid-area: uno;
+  }
+  .gallery__item--2 {
+    grid-area: dos;
+  }
+  .gallery__item--3 {
+    grid-area: tres;
+  }
+  .gallery__item--4 {
+    grid-area: cuatro;
+  }
+  .gallery__item--5 {
+    grid-area: cinco;
+  }
+  .gallery__item--6 {
+    grid-area: seis;
+  }
+}
+// END Gallery
+// BEGIN Sección 5
+#S5{
+  background: radial-gradient(#006BCC, #097CD8);
 }
