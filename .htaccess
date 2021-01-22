@@ -32,7 +32,6 @@ php_value zlib.output_compression 16386
 DefaultLanguage en-PR
 AddDefaultCharset UTF-8
 # TIMEZONE
-SetEnv TZ America/Puerto_Rico
 
 # DIRECTORY INDEX
 DirectoryIndex index.html
